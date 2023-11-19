@@ -61,16 +61,18 @@ void crypt(int p,int g,int x, string name){
     ofstream out;
     out.open(name);
 
-    char m;
-    while(cin>>m){
-    if(m>0){
-        cout<<(char)m;
-
+    string str;
+    while(cin>>str){
+        for(auto m : str){
+                ll k=rand()%(p-2)+1; // 1 < k <= (p-2)
+                ll a= pow(g, k, p);
+                ll b= multiply(pow(y, k, p), m, p);
+                out<<a<<" "<<b<<" ";
+        }
         ll k=rand()%(p-2)+1; // 1 < k <= (p-2)
         ll a= pow(g,k,p);
-        ll b= multiply(pow(y,k,p),m,p);
+        ll b= multiply(pow(y, k, p), ' ' ,p);
         out<<a<<" "<<b<<" ";
-    }
     }
 
    out.close();
